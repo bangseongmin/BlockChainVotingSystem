@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="container">
+    <div style="text-align: center;">
+        <h1 style="text-align: center;">블록체인 암호화 투표 시스템</h1>
+        <h2 style="text-align: center;">제작자 : 방성민, 박민지</h2>
+        <img src="/img/candidate.jpg">
+        <p>
+            <input type="button" id="btn1"  value=" 투표하기">
+            <input type="button" id="btn2"  value=" 투표자 목록">
+            <script type="text/javascript">
+                document.getElementById("btn1").onclick = function () {
+                    location.href = "/members/new";
+                };
+
+                document.getElementById("btn2").onclick = function () {
+                    location.href = "/members/to";
+                };
+            </script>
+        </p>
+
+        </script>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

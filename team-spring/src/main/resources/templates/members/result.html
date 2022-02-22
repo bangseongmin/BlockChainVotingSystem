@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <input type="text" id="phone" name="phone" placeholder="휴대폰 번호">
+            <input type="button" id="btn"  value=" 조회">
+            <tr>
+                <th>이름</th>
+                <th>휴대폰 번호</th>
+                <th>투표 결과</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.phone}"></td>
+                <td th:text="${member.vote}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

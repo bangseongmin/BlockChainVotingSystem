@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <form action="/members/new" method="post">
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을입력하세요">
+            <br>
+            <label for="phone">번호</label>
+            <input type="text" id="phone" name="phone" placeholder="휴대폰 번호">
+            <br>
+            <label for="vote">투표</label>
+            <input type="text" id="vote" name="vote" placeholder="후보자 번호">
+        </div>
+        <button type="submit">완료</button>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>

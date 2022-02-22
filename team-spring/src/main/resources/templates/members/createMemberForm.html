@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<body>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을입력하세요">
+            </div>
+            <div>
+
+            <label for="phone">번호</label>
+                <input type="text" id="phone" name="phone" placeholder="휴대폰 번호">
+                <input type="button" id="btn"  value=" 인증">
+            </div>
+
+            <div id="in" hidden="true">
+                <label for="phone">인증번호</label>
+                <input type="text" id="in2" name="in" placeholder="" value="">
+                <input type="button" id="btn3" value=" 인증번호확인">
+            </div>
+
+            <div>
+            <label for="vote">투표</label>
+            <input  type="text" id="vote" name="vote" placeholder="후보자 번호">
+            </div>
+        </div>
+
+
+     []
+        <input id="btn2" type="button" result="0"  value="완료">
+
+
+    <script type="text/javascript">
+        $('#btn').click(function(){
+            $('#in').removeAttr('hidden')
+            $('#btn').attr('hidden','true')
+
+            let phone = $('#phone').val();
+
+            $.ajax({
+                url: "/members/in", // 메세지 보내기
+                data : {
+                    phone : phone
+                },
+                type:"Post",
+                success: function(data1){
+                 if(data1 == 1)
+                        {
+
+                            $('#btn2').attr('result',1);
+                        }else
+                        {
+                            alert("이미 투표함");
+                         $('#btn2').attr('result',0);
+                          location.href = "/";
+                        }
+                }
+            })
+        })
+
+
+         $('#btn3').click(function(){
+        let data1 = $('#in2').val();
+
+            $.ajax({
+                url: "/members/out", //인증번호 확인
+                data : {
+                    in: data1
+                },
+                type:"Post",
+                dataType: "text",
+                success: function(data1){
+                        if(data1 == 1)
+                        {
+
+                            alert("성공");
+                            $('#btn2').attr('result',1);
+                        }else
+                        {
+                            alert("실패");
+                         $('#btn2').attr('result',0);
+                        }
+                }
+            })
+
+        })
+
+
+
+
+          $('#btn2').click(function(){
+           let phone = $('#phone').val();
+            var name = $('#name').val();
+            var vote = $('#vote').val();
+            var result=$('#btn2').attr('result');
+            if(result==1)
+            {
+
+            $.ajax({
+                url: "/members/new",
+                data : {
+                    phone : phone,
+                    name : name,
+                    vote : vote
+                },
+                type:"Post"
+            })
+
+            location.href="/"
+            }else
+            {
+            alert("인증버튼눌러주세요");
+            }
+
+
+
+            })
+    </script>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
